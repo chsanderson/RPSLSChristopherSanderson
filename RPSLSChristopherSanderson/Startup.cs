@@ -30,6 +30,8 @@ namespace RPSLSChristopherSanderson
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            //this alters the project by adding sessions to the MVC application
+            services.AddSession();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -51,7 +53,8 @@ namespace RPSLSChristopherSanderson
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            //this allows the MVC application to use sessions in the project
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
